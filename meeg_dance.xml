@@ -1,0 +1,69 @@
+<aap>
+    <tasklist>
+        <initialisation>
+            <module><name>aamod_checkparameters</name></module>
+            <module><name>aamod_study_init</name></module>
+            <module><name>aamod_newsubj_init</name></module>
+        </initialisation>
+        <main>
+            <!-- MRI -->
+            <module><name>aamod_structuralfromnifti</name></module>
+            <module><name>aamod_segment8</name></module>
+            <!--module><name>aamod_coreg_general</name></module>
+            <module><name>aamod_meeg_preparesourcemodel</name></module>
+            <module><name>aamod_meeg_prepareheadmodel</name></module-->
+
+            <module><name>aamod_norm_write</name></module>
+
+
+            <!-- EEG -->
+            <module><name>aamod_meeg_get_file</name></module>
+            <module><name>aamod_meeg_converttoeeglab</name></module>
+            <module><name>aamod_meeg_filter</name></module>
+            <module><name>aamod_meeg_cleanartifacts</name></module>
+            <module><name>aamod_meeg_rereference</name></module>
+            <module><name>aamod_meeg_ica</name></module>
+            <module><name>aamod_meeg_dipfit</name></module>
+            <module>
+                <branch>
+                    <analysisid_suffix>_restingstate</analysisid_suffix>
+                    <selected_sessions>restingstate1_pre restingstate2_pre restingstate1_fu1 restingstate2_fu1</selected_sessions>
+                    <module><name>aamod_meeg_icclassification</name></module>
+                    <module>
+                        <branch>
+                            <analysisid_suffix>_oneclean</analysisid_suffix>
+                            <module><name>aamod_meeg_epochs</name></module>
+                        </branch>
+                        <branch>
+                            <analysisid_suffix>_twoclean</analysisid_suffix>
+                            <module><name>aamod_meeg_cleanartifacts</name></module>
+                            <module><name>aamod_meeg_epochs</name></module>
+                            <module><name>aamod_meeg_timefrequencyanalysis</name></module>
+                            <module><name>aamod_meeg_fooof</name></module>
+                            <module><name>aamod_meeg_filter</name></module>
+                            <module><name>aamod_meeg_fei</name></module>
+                        </branch>
+                    </module>
+                </branch>
+                <branch>
+                    <analysisid_suffix>_rltask</analysisid_suffix>
+                    <selected_sessions>rltask1_pre</selected_sessions>
+                    <module><name>aamod_meeg_icclassification</name></module>
+                    <module>
+                        <branch>
+                            <analysisid_suffix>_oneclean</analysisid_suffix>
+                            <module><name>aamod_meeg_epochs</name></module>
+                        </branch>
+                        <branch>
+                            <analysisid_suffix>_twoclean</analysisid_suffix>
+                            <module><name>aamod_meeg_cleanartifacts</name></module>
+                            <module><name>aamod_meeg_epochs</name></module>
+                            <module><name>aamod_meeg_timefrequencyanalysis</name></module>
+                            <module><name>aamod_meeg_fooof</name></module>
+                        </branch>
+                    </module>
+                </branch>
+            </module>
+        </main>
+    </tasklist>
+</aap>
