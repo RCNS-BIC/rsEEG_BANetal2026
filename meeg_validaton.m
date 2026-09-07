@@ -27,7 +27,7 @@ SESSIONS = {'restingstate1_pre' 'restingstate2_pre' 'rltask1_pre'...
 load(fullfile(DATADIR,'../allevents.mat'),'events')
 
 %% RECIPE
-aap = aarecipe('meeg_dance.xml');
+aap = aarecipe('meeg_validation.xml');
 SPM = aas_inittoolbox(aap,'spm');
 SPM.load;
 
